@@ -1,0 +1,10 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, pink, purple); /* Gradient background */
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #333; /* Header color */
+}
