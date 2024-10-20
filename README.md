@@ -28,4 +28,4 @@ This project demonstrates how to deploy a simple static web application using HT
 #### Managing replicas and scaling applications in Kubernetes
 #### Exposing applications with Kubernetes Services (LoadBalancer)
 
-
+![Kubernetes Architecture Diagram](https://github.com/SrilekhaS20/static-website/blob/main/images/Kubernetes_diagram.drawio.png)
