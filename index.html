@@ -3,11 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Website</title>
+    <title>DevOps Project Walkthrough</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello from Docker!</h1>
-    <p>I am a simple static website deployed on Kubernetes using NGINX.</p>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>DevOps Project Walkthrough</h1>
+        <p>Progress and Steps for Deploying a Static Website using Docker and Kubernetes</p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="section">
+        <h2>Project Overview</h2>
+        <p>Follow the progress of deploying a static website from basic HTML/CSS to a fully containerized and orchestrated solution using Docker and Kubernetes. This project highlights essential DevOps practices and skills, starting from a simple web page to its deployment on a local Kubernetes cluster.</p>
+    </section>
+
+    <!-- Step 1: Static Website -->
+    <section class="section">
+        <h2>Step 1: Building the Static Website</h2>
+        <p><strong>Description:</strong> Created a simple static webpage using HTML and CSS which you are viewing right now!</p>
+        <p><strong>Screenshot:</strong></p>
+        <img src="images/index_image.png" alt="Screenshot of Static Page" width="800">
+        <p><strong>Outcome:</strong> Successfully rendered a static page with basic styling in a browser.</p>
+    </section>
+
+    <!-- Step 2: Dockerize the Website -->
+    <section class="section">
+        <h2>Step 2: Dockerizing the Website</h2>
+        <p><strong>Description:</strong> Created a Docker image for the static website using Nginx as the web server.</p>
+        <p><strong>Dockerfile:</strong></p>
+        <pre><code># Dockerfile
+FROM nginx:1.27.2-alpine
+COPY index.html /usr/share/nginx/html
+COPY style.css /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx","-g","daemon off;"]
+        </code></pre>
+        <p><strong>Commands:</strong></p>
+        <pre><code>docker build -t dockerhub_username/static-website:v1.0.0 .</code></pre>
+        <p><strong>Outcome:</strong> Successfully built a Docker container to serve the static page locally.</p>
+    </section>
+
+    <!-- Step 3: Publish Image to DockerHub -->
+    <section class="section">
+        <h2>Step 3: Publishing the Image to DockerHub</h2>
+        <p><strong>Description:</strong> Tagged and pushed the Docker image to DockerHub for deployment use.</p>
+        <p><strong>Commands:</strong></p>
+        <pre><code>docker push dockerhub_username/static-website:v1.0.0</code></pre>
+        <p><strong>Outcome:</strong> The Docker image is now accessible on DockerHub</p>
+    </section>
+
+    <!-- Step 4: Deploying to Kubernetes -->
+    <section class="section">
+        <h2>Step 4: Kubernetes Deployment and Service</h2>
+        <p><strong>Description:</strong> Created Kubernetes deployment and service YAML files for the Docker image.</p>
+        <p><strong>YAML Files:</strong></p>
+        <pre><code># deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deploy
+  labels:
+    app: nginx-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-deploy
+  template:
+    metadata:
+      labels:
+        app: nginx-deploy
+    spec:
+      containers:
+      - name: nginx
+        image: dockerhub_username/static-website:v1.0.0
+        ports:
+        - containerPort: 80
+
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx-deploy
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+        </code></pre>
+        <p><strong>Commands:</strong></p>
+        <pre><code>kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml</code></pre>
+        <p><strong>Outcome:</strong> The website is successfully deployed and accessible via a LoadBalancer service on Kubernetes.</p>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section conclusion">
+        <h2>Project Summary</h2>
+        <p>This DevOps project demonstrates end-to-end deployment of a static website using Docker and Kubernetes. Each stage builds on the previous one, highlighting skills in containerization and orchestration. This site showcases how simple static pages can scale to robust, cloud-ready deployments.</p>
+    </section>
+
 </body>
 </html>
