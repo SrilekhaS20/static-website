@@ -37,3 +37,12 @@ pipeline {
         }
     }
 }
+
+def incrementVersion(String version) {
+    // Increment the patch version
+    def versionParts = version.tokenize('.')
+    def major = versionParts[0].toInteger()
+    def minor = versionParts[1].toInteger()
+    def patch = versionParts[2].toInteger() + 1
+    return "${major}.${minor}.${patch}"
+}
