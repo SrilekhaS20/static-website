@@ -39,8 +39,17 @@ pipeline {
 }
 
 def incrementVersion(String version) {
+    // Remove the 'v' prefix if present
+    if (version.startsWith("v")) {
+        version = version.substring(1)
+    }
+    
     // Increment the patch version
     def versionParts = version.tokenize('.')
+    if (versionParts.size() != 3) {
+        error("Invalid version format: ${version}. Expected format: major.minor.patch")
+    }
+    
     def major = versionParts[0].toInteger()
     def minor = versionParts[1].toInteger()
     def patch = versionParts[2].toInteger() + 1
