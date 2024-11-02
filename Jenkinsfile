@@ -11,6 +11,11 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git url: GITHUB_REPO, branch: 'main'
+                // Check Git version
+                script {
+                    def gitVersion = sh(script: 'git --version', returnStdout: true).trim()
+                    echo "Git version: ${gitVersion}"
+                }
             }
         }
         stage('Build Docker Image') {
