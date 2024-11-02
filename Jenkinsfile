@@ -22,7 +22,6 @@ pipeline {
             steps {
                 script {
                     // Fetch the latest tags from Docker Hub
-                    // Using wget as an alternative to curl
                     def response = sh(script: "wget -qO- https://hub.docker.com/v2/repositories/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
                     def json = readJSON(text: response)
 
@@ -30,24 +29,29 @@ pipeline {
                     def tags = json.results*.name
                     def latestTag = tags.find { it.startsWith('v') }?.replaceAll('^v', '') // Remove 'v' for version comparison
                     echo "Latest tag found: ${latestTag}"
-                    
+
                     // Increment the version based on the latest tag
-                    def newVersion = latestTag ? incrementVersion(latestTag) : '0.0.1'
-                    echo "New version will be: v${newVersion}" 
+                    env.NEW_VERSION = latestTag ? incrementVersion(latestTag) : '0.0.1' // Store in environment variable
+                    echo "New version will be: v${env.NEW_VERSION}" 
                 }
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Assuming newVersion is already set from the previous stage
-                    sh "docker build -t ${DOCKER_IMAGE_NAME}:v${newVersion} ."
+                    // Check if NEW_VERSION is set
+                    if (!env.NEW_VERSION) {
+                        error("NEW_VERSION is not defined. Aborting build.")
+                    }
+
+                    // Build the Docker image
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION} ."
 
                     // Login to Docker Hub
                     sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin"
 
                     // Push Docker image
-                    sh "docker push ${DOCKER_IMAGE_NAME}:v${newVersion}"
+                    sh "docker push ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION}"
                 }
             }
         }
