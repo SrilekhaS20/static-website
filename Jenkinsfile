@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: GITHUB_REPO, branch: 'main'
+                git url: GITHUB_REPO, branch: 'main', credentialsId: 'Github_id'
                 // Check Git version
                 script {
                     def gitVersion = sh(script: 'git --version', returnStdout: true).trim()
