@@ -23,7 +23,7 @@ pipeline {
                 script {
                     // Fetch the latest tags from Docker Hub
                     // Using wget as an alternative to curl
-                    def response = sh(script: "wget -qO- https://registry.hub.docker.com/v2/repositories/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
+                    def response = sh(script: "wget -qO- https://hub.docker.com/repository/docker/sri24devops/static-website/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
                     def json = readJSON(text: response)
 
                     // Extract tags and find the latest version
