@@ -22,7 +22,8 @@ pipeline {
             steps {
                 script {
                     // Fetch the latest tags from Docker Hub
-                    def response = sh(script: "curl -s https://registry.hub.docker.com/v2/repositories/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
+                    // Using wget as an alternative to curl
+                    def response = sh(script: "wget -qO- https://registry.hub.docker.com/v2/repositories/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
                     def json = readJSON(text: response)
 
                     // Extract tags and find the latest version
