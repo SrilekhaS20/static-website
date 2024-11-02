@@ -34,7 +34,6 @@ pipeline {
                     // Increment the version based on the latest tag
                     def newVersion = latestTag ? incrementVersion(latestTag) : '0.0.1'
                     echo "New version will be: v${newVersion}" 
-                    }
                 }
             }
         }
