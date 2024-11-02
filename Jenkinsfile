@@ -23,21 +23,17 @@ pipeline {
                 script {
                     // Fetch the latest tags from Docker Hub
                     // Using wget as an alternative to curl
-                    def response = sh(script: "wget -qO- https://hub.docker.com/repository/docker/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
+                    def response = sh(script: "wget -qO- https://hub.docker.com/v2/repositories/${DOCKER_IMAGE_NAME}/tags", returnStdout: true)
                     def json = readJSON(text: response)
 
                     // Extract tags and find the latest version
                     def tags = json.results*.name
                     def latestTag = tags.find { it.startsWith('v') }?.replaceAll('^v', '') // Remove 'v' for version comparison
                     echo "Latest tag found: ${latestTag}"
-
-                    if (latestTag) {
-                        // Increment the version based on the latest tag
-                        def newVersion = incrementVersion(latestTag)
-                        echo "New version will be: v${newVersion}" // Add 'v' back for the new version
-                    } else {
-                        echo "No valid tags found, starting from v0.0.1"
-                        def newVersion = '0.0.1'
+                    
+                    // Increment the version based on the latest tag
+                    def newVersion = latestTag ? incrementVersion(latestTag) : '0.0.1'
+                    echo "New version will be: v${newVersion}" 
                     }
                 }
             }
