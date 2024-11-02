@@ -13,5 +13,22 @@ pipeline {
                 git url: GITHUB_REPO, branch: 'main'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    def currentVersion = sh(script: 'git describe --tags --abbrev=0', returnStdout: true).trim()
+                    def newVersion = incrementVersion(currentVersion)
+
+                    // Build Docker image
+                    sh "docker build -t ${DOCKER_IMAGE_NAME}:${newVersion} ."
+
+                    // Login to Docker Hub
+                    sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin"
+
+                    // Push Docker image
+                    sh "docker push ${DOCKER_IMAGE_NAME}:${newVersion}"
+                }
+            }
+        }
     }
 }
