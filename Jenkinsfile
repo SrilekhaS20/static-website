@@ -4,6 +4,7 @@ pipeline {
         DOCKER_HUB_CREDENTIALS = credentials('docker_id')
         GITHUB_REPO = 'https://github.com/SrilekhaS20/static-website.git'
         DOCKER_IMAGE_NAME = 'sri24devops/static-website'
+        PORT = '8090'
         MINIKUBE_CONTEXT = 'minikube'
     }
 
@@ -52,6 +53,15 @@ pipeline {
 
                     // Push Docker image
                     sh "docker push ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION}"
+                }
+            }
+        }
+        stage('Run Docker Container Locally') {
+            steps {
+                script {
+                    // Run the Docker container with port forwarding
+                    sh "docker run -d -p ${PORT}:80 --name static-site ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION}"
+                    echo "Docker container is running on port ${PORT}"
                 }
             }
         }
