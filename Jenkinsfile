@@ -77,6 +77,9 @@ pipeline {
                     // Apply deployment and service yaml files
                     sh "kubectl apply -f deployment.yaml"
                     sh "kubectl apply -f service.yaml"
+                }
+            }
+        }
     }
 }
 
