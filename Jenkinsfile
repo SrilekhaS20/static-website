@@ -99,6 +99,11 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh 'docker logout'
+        }
+    }
 }
 
 def incrementVersion(String version) {
