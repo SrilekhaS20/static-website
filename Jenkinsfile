@@ -65,6 +65,18 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to MInikube') {
+            steps {
+                script {
+                    // Set contect to Minikube
+                    sh "kubectl config use-context ${MINIKUBE_CONTEXT}"
+
+                    // Replace TAG in deployment.yaml with new Docker image version
+                    sh "sed -i 's|${DOCKER_IMAGE_NAME}:TAG|${DOCKER_IMAGE_NAME}:{env.NEW_VERSION}|g' deployment.yaml"
+
+                    // Apply deployment and service yaml files
+                    sh "kubectl apply -f deployment.yaml"
+                    sh "kubectl apply -f service.yaml"
     }
 }
 
