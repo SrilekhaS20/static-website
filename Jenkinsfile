@@ -80,6 +80,24 @@ pipeline {
                 }
             }
         }
+        stage('Start Minikube tunnel') {
+            steps {
+                script {
+                    // Expose LOadbalancer services
+                    sh "minikube tunnel &"
+                    sleep(10)
+                }
+            }
+        }
+        stage('Access the site') {
+            steps {
+                script {
+                    // Retrieving external IP of LoadBalancer
+                    def externalIP = sh(script: "kubectl get svc static-website -o jsonpath='{.status.loadbalancer.ingress[0].ip}'",returnStdout: true).trim()
+                    echo "Accessing the site at:http//${externalIP}:80"
+                }
+            }
+        }
     }
 }
 
