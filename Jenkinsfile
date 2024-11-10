@@ -59,9 +59,12 @@ pipeline {
         stage('Run Docker Container Locally') {
             steps {
                 script {
+                    // Use a unique name for the container, based on the version
+                    def containerName = "static-site-${env.NEW_VERSION}"
+                    
                     // Run the Docker container with port forwarding
-                    sh "docker run -d -p ${PORT}:80 --name static-site ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION}"
-                    echo "Docker container is running on port ${PORT}"
+                    sh "docker run -d -p ${PORT}:80 --name ${containerName} ${DOCKER_IMAGE_NAME}:v${env.NEW_VERSION}"
+                    echo "Docker container is running on port ${PORT} with name ${containerName}"
                 }
             }
         }
@@ -83,7 +86,7 @@ pipeline {
         stage('Start Minikube tunnel') {
             steps {
                 script {
-                    // Expose LOadbalancer services
+                    // Expose Loadbalancer services
                     sh "minikube tunnel &"
                     sleep(10)
                 }
@@ -94,7 +97,7 @@ pipeline {
                 script {
                     // Retrieving external IP of LoadBalancer
                     def externalIP = sh(script: "kubectl get svc static-website -o jsonpath='{.status.loadbalancer.ingress[0].ip}'",returnStdout: true).trim()
-                    echo "Accessing the site at:http//${externalIP}:80"
+                    echo "Accessing the site at http://${externalIP}:80"
                 }
             }
         }
