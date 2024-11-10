@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: sri24devops/static-website:v1.0.0
+        image: sri24devops/static-website:TAG
         ports:
         - containerPort: 80  
