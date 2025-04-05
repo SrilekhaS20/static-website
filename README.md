@@ -114,7 +114,7 @@
 ##### If you’re a recruiter or hiring manager looking for someone with hands-on DevOps experience and a passion for building scalable, automated infrastructure — let’s connect!
 
 ##### 📫 lekhaconst.1@gmail.com
-##### 🔗 LinkedIn
-##### 🐙 GitHub
+##### 🔗 [LinkedIn](https://www.linkedin.com/in/srilekha-senthilkumar/)
+##### 🐙 [GitHub](https://github.com/SrilekhaS20)
 
 ##### ⭐️ If you found this project helpful, feel free to star it and check out my other DevOps projects!
