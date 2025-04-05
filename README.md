@@ -37,3 +37,76 @@
 ## 📦 Project Structure
 
 . ├── index.html ├── styles.css ├── Dockerfile ├── k8s │ ├── deployment.yaml │ └── service.yaml └── images └── Kubernetes_diagram.drawio.png
+
+
+---
+
+## 🚀 Deployment Steps
+
+1. **Dockerize the App**
+   ```bash
+   docker build -t srilekha/static-website .
+   docker push srilekha/static-website
+2. **Apply Kubernetes Manifests**
+    ```bash
+    kubectl apply -f k8s/deployment.yaml
+    Access the App
+
+3. **Access the app**
+ If using Minikube:
+    ```bash
+    minikube service static-site-service
+  In cloud: Visit the LoadBalancer external IP.kubectl apply -f k8s/service.yaml
+
+## 🎯 Why This Project Matters
+##### Deploying even a simple static website using Kubernetes introduces critical DevOps skills:
+
+##### Container image creation and optimization
+
+##### Orchestrating services and replicas
+
+##### High availability and scalability
+
+##### Load balancing and networking in Kubernetes
+
+##### This is the foundation of what happens behind the scenes in most cloud-native production environments.
+
+## 🧠 Learning Outcomes
+##### 🐳 Dockerfile creation and image publishing
+
+##### ⚙️ Running NGINX inside a container
+
+##### ☸️ Creating deployments and services in Kubernetes
+
+##### 🔄 Managing stateless workloads and scaling
+
+##### 📶 LoadBalancer & networking fundamentals
+
+## 🔧 My Role
+##### Designed and coded the frontend using HTML/CSS
+
+##### Dockerized the app using a custom Dockerfile
+
+##### Deployed the app on a local Kubernetes cluster
+
+##### Configured Deployment and Service YAMLs
+
+##### Managed replica sets for high availability
+
+## 🛤️ Future Improvements
+##### Add CI/CD pipeline using GitHub Actions or Jenkins
+
+##### Enable HTTPS with cert-manager and Ingress
+
+##### Host live version on GitHub Pages or cloud provider
+
+##### Monitor pods using Prometheus & Grafana
+
+## 🙌 Connect with Me
+##### If you’re a recruiter or hiring manager looking for someone with hands-on DevOps experience and a passion for building scalable, automated infrastructure — let’s connect!
+
+##### 📫 lekhaconst.1@gmail.com
+##### 🔗 LinkedIn
+##### 🐙 GitHub
+
+##### ⭐️ If you found this project helpful, feel free to star it and check out my other DevOps projects!
