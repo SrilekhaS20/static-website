@@ -1,31 +1,39 @@
-# Deploy a Simple Web Application on Kubernetes
-This project demonstrates how to deploy a simple static web application using HTML/CSS, Docker, NGINX, and Kubernetes. The web app is containerized with Docker and deployed on a Kubernetes cluster, exposing it to users via a LoadBalancer service. This project highlights essential concepts in containerization, orchestration, and scalability, making it an excellent beginner-friendly introduction to cloud-native deployments.
+# 🚀 Static Website Deployment with Docker, NGINX & Kubernetes
 
-## Tech Stack
-HTML/CSS: Frontend for the static web application
-NGINX: Web server to serve static content
-Docker: Containerization platform
-Kubernetes: Orchestration for managing containerized applications
+[![Dockerized](https://img.shields.io/badge/Dockerized-Yes-blue)](https://www.docker.com/)
+[![Built with NGINX](https://img.shields.io/badge/Web--Server-NGINX-brightgreen)](https://nginx.org/)
+[![CI/CD Ready](https://img.shields.io/badge/CI%2FCD-Jenkins-blueviolet)](https://jenkins.io/)
+[![Kubernetes](https://img.shields.io/badge/Deployed%20On-Kubernetes-326ce5)](https://kubernetes.io/)
+[![Project Status](https://img.shields.io/badge/Status-Completed-success)](#)
 
-## Project Features
-A simple static website with an index.html and styles.css file
-Containerized with NGINX using a lightweight Docker image
-Kubernetes Deployment with multiple replicas for high availability
-Exposed via a Kubernetes Service using a LoadBalancer
-Scalable and ready for cloud deployment
+> A beginner-friendly DevOps project that demonstrates how to containerize and deploy a static web application using **Docker**, **NGINX**, and **Kubernetes**, highlighting real-world cloud-native practices.
 
-## Steps to Deploy
-Dockerize the static web application using a Dockerfile to package the site with NGINX.
-Build and push the Docker image to Docker Hub (or any container registry).
-Create a Kubernetes Deployment to manage the container replicas.
-Expose the deployment using a Kubernetes Service.
-Test the application by accessing it through the Service's external IP or URL.
+---
 
-## Learning Outcomes
-Understanding the basics of Docker and containerization
-Working with NGINX as a web server inside a Docker container
-Deploying containerized applications on a Kubernetes cluster
-Managing replicas and scaling applications in Kubernetes
-Exposing applications with Kubernetes Services (LoadBalancer)
+## 📌 Table of Contents
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📦 Project Structure](#-project-structure)
+- [🚀 Deployment Steps](#-deployment-steps)
+- [📸 Preview](#-preview)
+- [🎯 Why This Project Matters](#-why-this-project-matters)
+- [🧠 Learning Outcomes](#-learning-outcomes)
+- [🔧 My Role](#-my-role)
+- [🛤️ Future Improvements](#-future-improvements)
 
-![Kubernetes Architecture Diagram](https://github.com/SrilekhaS20/static-website/blob/main/images/Kubernetes_diagram.drawio.png)
+---
+
+## 🛠️ Tech Stack
+
+| Tool         | Purpose                             |
+|--------------|-------------------------------------|
+| HTML/CSS     | Static frontend website             |
+| NGINX        | Web server for static content       |
+| Docker       | Containerization                    |
+| Kubernetes   | Container orchestration             |
+| Jenkins      | (Optional) CI/CD pipeline setup     |
+
+---
+
+## 📦 Project Structure
+
+. ├── index.html ├── styles.css ├── Dockerfile ├── k8s │ ├── deployment.yaml │ └── service.yaml └── images └── Kubernetes_diagram.drawio.png
