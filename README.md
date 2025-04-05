@@ -35,9 +35,9 @@
 ---
 
 ## 📦 Project Structure
-
+```
 . ├── index.html ├── styles.css ├── Dockerfile ├── k8s │ ├── deployment.yaml │ └── service.yaml └── images └── Kubernetes_diagram.drawio.png
-
+```
 
 ---
 
