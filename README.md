@@ -1,11 +1,12 @@
 # 🚀 Static Website Deployment with Docker, NGINX & Kubernetes
 
-> **Live Demo:** [🌐 Visit Live Site](https://srilekhas20.github.io/static-website/) 
 [![Dockerized](https://img.shields.io/badge/Dockerized-Yes-blue)](https://www.docker.com/)
 [![Built with NGINX](https://img.shields.io/badge/Web--Server-NGINX-brightgreen)](https://nginx.org/)
 [![CI/CD Ready](https://img.shields.io/badge/CI%2FCD-Jenkins-blueviolet)](https://jenkins.io/)
 [![Kubernetes](https://img.shields.io/badge/Deployed%20On-Kubernetes-326ce5)](https://kubernetes.io/)
 [![Project Status](https://img.shields.io/badge/Status-Completed-success)](#)
+
+> **Live Demo:** [🌐 Visit Live Site](https://srilekhas20.github.io/static-website/) 
 
 ## 🧠 Why This Project?
 
