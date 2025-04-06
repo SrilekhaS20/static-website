@@ -46,9 +46,10 @@ I built this project to showcase a real-world DevOps use case—containerizing a
 ├── index.html
 ├── styles.css
 ├── Dockerfile
-├── k8s
-│   ├── deployment.yaml
-│   └── service.yaml
+├── Jenkinsfile
+├── README.md
+├── deployment.yaml
+├── service.yaml
 └── images
     └── Kubernetes_diagram.drawio.png
 ```
@@ -65,7 +66,7 @@ I built this project to showcase a real-world DevOps use case—containerizing a
 
 2. **Apply Kubernetes Manifests**
     ```bash
-    kubectl apply -f k8s/deployment.yaml
+    kubectl apply -f deployment.yaml
 
 3. **Access the app**
  ##### If using Minikube:
@@ -73,7 +74,7 @@ I built this project to showcase a real-world DevOps use case—containerizing a
     minikube service static-site-service
   ##### In cloud: Visit the LoadBalancer external IP
     ``` bash
-    kubectl apply -f k8s/service.yaml
+    kubectl apply -f service.yaml
 
 ## 🎯 Why This Project Matters
 ##### Deploying even a simple static website using Kubernetes introduces critical DevOps skills:
