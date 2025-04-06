@@ -34,6 +34,8 @@
 
 ---
 
+🔗 [Visit Live Site](https://srilekhas20.github.io/static-website/)
+
 ## 📦 Project Structure
 ```
 .
@@ -58,13 +60,12 @@
 2. **Apply Kubernetes Manifests**
     ```bash
     kubectl apply -f k8s/deployment.yaml
-    Access the App
 
 3. **Access the app**
- If using Minikube:
+ ##### If using Minikube:
     ```bash
     minikube service static-site-service
-  In cloud: Visit the LoadBalancer external IP.kubectl apply -f k8s/service.yaml
+  ##### In cloud: Visit the LoadBalancer external IP.kubectl apply -f k8s/service.yaml
 
 ## 🎯 Why This Project Matters
 ##### Deploying even a simple static website using Kubernetes introduces critical DevOps skills:
