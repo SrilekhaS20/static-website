@@ -1,10 +1,15 @@
 # 🚀 Static Website Deployment with Docker, NGINX & Kubernetes
 
+> **Live Demo:** [🌐 Visit Live Site](https://srilekhas20.github.io/static-website/) 
 [![Dockerized](https://img.shields.io/badge/Dockerized-Yes-blue)](https://www.docker.com/)
 [![Built with NGINX](https://img.shields.io/badge/Web--Server-NGINX-brightgreen)](https://nginx.org/)
 [![CI/CD Ready](https://img.shields.io/badge/CI%2FCD-Jenkins-blueviolet)](https://jenkins.io/)
 [![Kubernetes](https://img.shields.io/badge/Deployed%20On-Kubernetes-326ce5)](https://kubernetes.io/)
 [![Project Status](https://img.shields.io/badge/Status-Completed-success)](#)
+
+## 🧠 Why This Project?
+
+I built this project to showcase a real-world DevOps use case—containerizing a static website, deploying it with NGINX on Docker, and orchestrating it through Kubernetes. It demonstrates my understanding of automation, scalability, and modern infrastructure practices—skills essential for cloud-native environments and fast-paced product teams.
 
 > A beginner-friendly DevOps project that demonstrates how to containerize and deploy a static web application using **Docker**, **NGINX**, and **Kubernetes**, highlighting real-world cloud-native practices.
 
@@ -34,8 +39,6 @@
 
 ---
 
-🔗 [Visit Live Site](https://srilekhas20.github.io/static-website/)
-
 ## 📦 Project Structure
 ```
 .
@@ -55,8 +58,10 @@
 
 1. **Dockerize the App**
    ```bash
-   docker build -t srilekha/static-website .
-   docker push srilekha/static-website
+   docker build -t sri24devops/static-website .
+   docker run -d -p 8080:80 sri24devops/static-website
+   docker push sri24devops/static-website
+
 2. **Apply Kubernetes Manifests**
     ```bash
     kubectl apply -f k8s/deployment.yaml
@@ -65,7 +70,9 @@
  ##### If using Minikube:
     ```bash
     minikube service static-site-service
-  ##### In cloud: Visit the LoadBalancer external IP.kubectl apply -f k8s/service.yaml
+  ##### In cloud: Visit the LoadBalancer external IP
+    ``` bash
+    kubectl apply -f k8s/service.yaml
 
 ## 🎯 Why This Project Matters
 ##### Deploying even a simple static website using Kubernetes introduces critical DevOps skills:
